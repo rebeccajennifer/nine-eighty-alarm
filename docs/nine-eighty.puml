@@ -1,0 +1,75 @@
+@startuml
+
+' Hides the 'c' that appears next to classes
+hide circle
+
+skinparam DefaultFontName "Monospaced"
+skinparam DefaultFontSize "10"
+skinparam MinClassWidth 100
+
+'_______________________________________________________________________
+' Colors
+'_______________________________________________________________________
+' Apply background color: Use  $color_var_name  (colors defined w/ #)
+' Apply outline    color: Use #$color_var_name  (colors defined w/ #)
+'
+' e.g. class ClassName #$outline_color $bg_color
+'
+!$color_0= "#00afd7"
+!$color_1= "#LightGray"
+!$color_2= "#000000"
+
+!$def_bg_= "#eeeeee"
+
+skinparam ClassBackgroundColor  $def_bg_
+skinparam ClassBorderColor      $color_0
+
+'_______________________________________________________________________
+' Global params
+'_______________________________________________________________________
+
+
+'_______________________________________________________________________
+' Legend
+'_______________________________________________________________________
+' --|> Inheritance, child on top  e.g. ChildClass  --|> ParentClass
+' <|-- Inheritance, parent on top e.g. ParentClass --|> ChildClass
+' *--  Composition
+' o--  Aggregation
+' --   Association
+' -->  Directed Association
+' ..>  Dependency
+' <|.. Realization
+'_______________________________________________________________________
+
+class TopLevel
+class TimeCalcs
+class FluxClock
+class MomentarySwitch
+class FluxAlarm
+class Adafruit_AlphaNum4
+
+class TimeController
+class TimeDisplay
+
+hide  TimeController      members
+hide  TimeDisplay         members
+hide  TopLevel            members
+hide  TimeCalcs           members
+hide  FluxClock           members
+hide  MomentarySwitch     members
+hide  FluxAlarm           members
+hide  Adafruit_AlphaNum4  members
+
+
+TopLevel        --> TimeCalcs
+TopLevel        --> TimeController
+
+TimeController  --> FluxClock
+TimeController  --> TimeDisplay
+TimeController  --> MomentarySwitch
+
+FluxClock       --> FluxAlarm
+TimeDisplay     --> Adafruit_AlphaNum4
+
+@enduml

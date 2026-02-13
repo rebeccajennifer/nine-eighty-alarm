@@ -16,13 +16,13 @@ skinparam MinClassWidth 100
 ' e.g. class ClassName #$outline_color $bg_color
 '
 !$color_0= "#00afd7"
-!$color_1= "#LightGray"
+!$color_1= "#d72faf"
 !$color_2= "#000000"
 
 !$def_bg_= "#eeeeee"
 
 skinparam ClassBackgroundColor  $def_bg_
-skinparam ClassBorderColor      $color_0
+skinparam ClassBorderColor      $color_1
 
 '_______________________________________________________________________
 ' Global params
@@ -71,5 +71,27 @@ TimeController  --> MomentarySwitch
 
 FluxClock       --> FluxAlarm
 TimeDisplay     --> Adafruit_AlphaNum4
+
+'json "Class Descriptions" as desc_tbl {
+'  "TopLevel"            : "Top level functionality."
+', "TimeCalcs"           : "Static time constants and calculations."
+', "FluxClock"           : "Clock object and setter functions based on hardware implementation."
+', "MomentarySwitch"     : "State logic for buttons."
+', "FluxAlarm"           : "Alarm information."
+', "Adafruit_AlphaNum4"  : "Third party class to control LED display."
+', "TimeController"      : "Control logic for time."
+', "TimeDisplay"         : ""
+'}
+
+object Descriptions {
+ TopLevel            : Top level functionality.
+ TimeCalcs           : Static time constants and calculations.
+ FluxClock           : Clock object and setter functions based on hardware implementation.
+ MomentarySwitch     : State logic for buttons.
+ FluxAlarm           : Alarm information.
+ Adafruit_AlphaNum4  : Third party class to control LED display.
+ TimeController      : Control logic for time.
+ TimeDisplay         :
+}
 
 @enduml

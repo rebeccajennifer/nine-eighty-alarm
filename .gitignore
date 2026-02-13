@@ -1,3 +1,7 @@
+# AutoCAD
+*.dwl
+*.dwl2
+
 # Prerequisites
 *.d
 

@@ -5,7 +5,7 @@ hide circle
 
 skinparam DefaultFontName "Monospaced"
 skinparam DefaultFontSize "10"
-skinparam MinClassWidth 100
+skinparam MinClassWidth 140
 
 '_______________________________________________________________________
 ' Colors
@@ -16,13 +16,17 @@ skinparam MinClassWidth 100
 ' e.g. class ClassName #$outline_color $bg_color
 '
 !$color_0= "#00afd7"
-!$color_1= "#d72faf"
+!$color_1= "#af5fd7"
 !$color_2= "#000000"
 
-!$def_bg_= "#eeeeee"
+!$def_bg_= "#ffffff"
 
 skinparam ClassBackgroundColor  $def_bg_
-skinparam ClassBorderColor      $color_1
+skinparam ClassBorderColor      $color_0
+skinparam NoteBackgroundColor   $def_bg_
+skinparam NoteBorderColor       $color_1
+skinparam ArrowThickness        2
+skinparam ClassBorderThickness  2
 
 '_______________________________________________________________________
 ' Global params
@@ -42,56 +46,60 @@ skinparam ClassBorderColor      $color_1
 ' <|.. Realization
 '_______________________________________________________________________
 
-class TopLevel
-class TimeCalcs
-class FluxClock
+class QnxDriver
+class ClockWrapper
 class MomentarySwitch
-class FluxAlarm
 class Adafruit_AlphaNum4
+class TimeCtrl
+{
+  -ClockWrapper clock_
+  -LedDisplay  *display_
+  +bool         is_on_fri()
+}
+class UserCtrl
+{
+  -LedDisplay* display_
+}
+class FluxAlarm
+{
+  -uint8_t day
+  -uint8_t hr
+  -uint8_t min
+}
 
-class TimeController
-class TimeDisplay
 
-hide  TimeController      members
-hide  TimeDisplay         members
-hide  TopLevel            members
-hide  TimeCalcs           members
-hide  FluxClock           members
+class LedDisplay
+class AudioCtrl
+
+hide  QnxDriver           members
+hide  LedDisplay         members
+hide  ClockWrapper        members
 hide  MomentarySwitch     members
-hide  FluxAlarm           members
 hide  Adafruit_AlphaNum4  members
+hide  AudioCtrl           members
 
+QnxDriver     *-down- UserCtrl
+QnxDriver     *-down- TimeCtrl
+QnxDriver     *-down- LedDisplay
+TimeCtrl      *-up-   LedDisplay
+UserCtrl      *-up-   LedDisplay
+TimeCtrl      *--     ClockWrapper
+TimeCtrl      *-down- FluxAlarm
 
-TopLevel        --> TimeCalcs
-TopLevel        --> TimeController
+UserCtrl      *-down- MomentarySwitch
+FluxAlarm     --      AudioCtrl
 
-TimeController  --> FluxClock
-TimeController  --> TimeDisplay
-TimeController  --> MomentarySwitch
+LedDisplay     *-- Adafruit_AlphaNum4
 
-FluxClock       --> FluxAlarm
-TimeDisplay     --> Adafruit_AlphaNum4
-
-'json "Class Descriptions" as desc_tbl {
-'  "TopLevel"            : "Top level functionality."
-', "TimeCalcs"           : "Static time constants and calculations."
-', "FluxClock"           : "Clock object and setter functions based on hardware implementation."
-', "MomentarySwitch"     : "State logic for buttons."
-', "FluxAlarm"           : "Alarm information."
-', "Adafruit_AlphaNum4"  : "Third party class to control LED display."
-', "TimeController"      : "Control logic for time."
-', "TimeDisplay"         : ""
-'}
-
-object Descriptions {
- TopLevel            : Top level functionality.
- TimeCalcs           : Static time constants and calculations.
- FluxClock           : Clock object and setter functions based on hardware implementation.
- MomentarySwitch     : State logic for buttons.
- FluxAlarm           : Alarm information.
- Adafruit_AlphaNum4  : Third party class to control LED display.
- TimeController      : Control logic for time.
- TimeDisplay         :
+json "Class Description" as class_desc {
+  "TopLevel          " : "Top level functionality."
+, "TimeCalcs         " : "Static time constants and calculations."
+, "ClockWrapper      " : "Clock object and time setter functions based on hardware implementation. Tracks off Friday week."
+, "MomentarySwitch   " : "State logic for buttons."
+, "FluxAlarm         " : "Alarm information."
+, "Adafruit_AlphaNum4" : "Third party class to control LED display."
+, "UserCtrl"           : "Interaction between user inputs and time set."
+, "LedDisplay       " : ""
 }
 
 @enduml

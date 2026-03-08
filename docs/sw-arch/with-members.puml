@@ -1,0 +1,65 @@
+@startuml with-members
+
+!include ./nine-eighty.puml
+!include ./style.puml
+
+class TimeCtrl
+{
+  -ClockWrapper clock_
+  -AlphaDisplay  *display_
+  +bool         is_on_fri()
+}
+
+class AlphaDisplay
+{
+  -Adafruit_AlphaNum4 led_segments_
+  +void write_disp_str    (const char*)
+  +void write_disp_str_num(const char* str, uint8_t num)
+  +void write_disp_hr_min (uint8_t hr     , uint8_t min)
+  +void write_disp_time   (uint8_t        , uint8_t)
+}
+
+class UserCtrl
+{
+  -AlphaDisplay* display_
+}
+
+class FluxAlarm
+{
+  -uint8_t day
+  -uint8_t hr
+  -uint8_t min
+}
+
+class MomentarySwitch
+{
+  -int on_value_
+  -int reading_
+
+  -int settle_time_in_ms_
+  -int long_hold_time_in_ms_
+  -int short_hold_time_in_ms_
+  -int mult_input_time_gap_
+
+  -int sw_state_
+  -int prev_state_
+
+  -int prev_debounced_input_
+  -int multi_input_count_
+
+  -unsigned long prev_ms_
+  -unsigned long on_time_ms_
+  -unsigned long release_time_ms_
+  -unsigned long time_since_off_
+
+  -SwitchState sw_state_type_
+
+  +InputType get_input_type()
+  +int       debounce_input()
+  +int       get_pin()
+  +int       get_reading()
+  +bool      is_short_press()
+}
+
+
+@enduml

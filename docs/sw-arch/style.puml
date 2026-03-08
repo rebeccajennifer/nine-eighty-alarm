@@ -1,0 +1,26 @@
+@startuml style-nine-eighty
+'_______________________________________________________________________
+' Colors
+'_______________________________________________________________________
+' Apply background color: Use  $color_var_name  (colors defined w/ #)
+' Apply outline    color: Use #$color_var_name  (colors defined w/ #)
+'
+' e.g. class ClassName #$outline_color $bg_color
+'
+!$color_0= "#00afd7"
+!$color_1= "#af5fd7"
+!$color_2= "#000000"
+
+!$def_bg_= "#ffffff"
+
+skinparam ClassBackgroundColor  $def_bg_
+skinparam ClassBorderColor      $color_0
+skinparam NoteBackgroundColor   $def_bg_
+skinparam NoteBorderColor       $color_1
+skinparam ArrowThickness        2
+skinparam ClassBorderThickness  2
+skinparam Linetype              ortho
+
+!include ./nine-eighty.puml
+
+@enduml

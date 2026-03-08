@@ -1,0 +1,64 @@
+@startuml
+
+''
+
+' Hides the 'c' that appears next to classes
+hide circle
+
+skinparam DefaultFontName "Monospaced"
+skinparam DefaultFontSize "10"
+skinparam MinClassWidth 140
+
+'_______________________________________________________________________
+' Global params
+'_______________________________________________________________________
+
+
+'_______________________________________________________________________
+' Legend
+'_______________________________________________________________________
+' --|> Inheritance, child on top  e.g. ChildClass  --|> ParentClass
+' <|-- Inheritance, parent on top e.g. ParentClass --|> ChildClass
+' *--  Composition
+' o--  Aggregation
+' --   Association
+' -->  Directed Association
+' ..>  Dependency
+' <|.. Realization
+'_______________________________________________________________________
+
+class QnxDriver
+class ClockWrapper
+class Adafruit_AlphaNum4
+class TimeCtrl
+class UserCtrl
+class FluxAlarm
+class AlphaDisplay
+class AudioCtrl
+class MomentarySwitch
+
+QnxDriver     *-down- UserCtrl
+QnxDriver     *-down- TimeCtrl
+QnxDriver     *-down- AlphaDisplay
+TimeCtrl      *-up-   AlphaDisplay
+UserCtrl      *-up-   AlphaDisplay
+TimeCtrl      *-      ClockWrapper
+TimeCtrl      *-down- FluxAlarm
+
+UserCtrl      *-down- MomentarySwitch
+FluxAlarm     -      AudioCtrl
+
+AlphaDisplay   *- Adafruit_AlphaNum4
+
+json "Class Description" as class_desc {
+  "TopLevel           " : "Top level functionality."
+, "TimeCalcs          " : "Static time constants and calculations."
+, "ClockWrapper       " : "Clock object and time setter functions based on hardware implementation. Tracks off Friday week."
+, "MomentarySwitch    " : "State logic for buttons."
+, "FluxAlarm          " : "Alarm information."
+, "Adafruit_AlphaNum4 " : "Third party class to control LED display."
+, "UserCtrl           " : "Interaction between user inputs and time set."
+, "AlphaDisplay       " : "Alphanumeric display control and formatting."
+, "QNXDriver          " : "QNX driver class."
+}
+@enduml

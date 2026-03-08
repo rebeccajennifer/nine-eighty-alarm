@@ -1,0 +1,90 @@
+---
+title: UML Reference
+description: >
+  An abbreviated reference for UML terminology.
+toc-depth: 6
+---
+
+UML, Unified Modeling Language, is a standardized visual representation used to describe various aspects of software architecture.
+This page contains reference material for basic implementation of UML.
+
+[Official UML Documentation](https://www.omg.org/spec/UML/)
+
+## Types of Diagrams
+
+### Structure Diagrams
+
+- Class Diagram
+- Object Diagram
+- Component Diagram
+- Composite Structure Diagram
+- Package Diagram
+- Deployment Diagram.
+
+### Behavior Diagrams
+
+- Use Case Diagram
+- Activity Diagram
+- State Machine Diagram.
+
+### Interaction Diagrams
+
+Derived from Behavior Diagram
+
+- Sequence Diagram
+- Communication Diagram
+- Timing Diagram
+- Interaction Overview Diagram
+
+## Class Diagram Terminology
+
+### Association
+
+Association is when two classes know about each other and need to communicate, but there is no strong relationship.
+
+__Example__
+
+`ClassA` uses functions from `DebugClass`. `ClassA` knows about debug class, but not vice versa.
+
+@startuml
+hide circle
+hide members
+class ClassA
+class DebugClass
+ClassA <-- DebugClass
+@enduml
+
+#### Aggregation
+
+Aggregation is a subset of association. Implies that the child can exist independently of the parent. This relationship does not indicated that there is ownership between classes.
+
+__Arrowhead Representation__
+
+Unfilled diamond on the side of the parent.
+
+__Example__
+
+@startuml
+hide circle
+hide members
+Human o-- Rabbit
+@enduml
+
+The rabbit will still exist if the human is deleted.
+
+#### Composition
+
+Composition is a subset of association. Implies that the child cannot exist without the parent.
+
+__Arrowhead Representation__
+
+Solid diamond shape on the side of the parent.
+
+__Example__
+
+@startuml
+hide circle
+hide members
+Rabbit *-- Ear
+Rabbit *-- Tail
+@enduml

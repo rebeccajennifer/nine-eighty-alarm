@@ -3,15 +3,6 @@
 !include nine-eighty.puml
 !include style.puml
 
-hide  QnxDriver           members
-hide  ClockWrapper        members
-hide  Adafruit_AlphaNum4  members
-hide  AudioCtrl           members
-hide  AlphaDisplay        members
-hide  TimeCtrl            members
-hide  MomentarySwitch     members
-hide  UserCtrl            members
-hide  FluxAlarm           members
-
+hide members
 
 @enduml

@@ -1,3 +1,7 @@
+# Quarto
+uml-ref_files/
+*.html
+
 # AutoCAD
 *.dwl
 *.dwl2

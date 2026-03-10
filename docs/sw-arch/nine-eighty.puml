@@ -19,10 +19,10 @@ skinparam MinClassWidth 140
 '_______________________________________________________________________
 ' --|> Inheritance, child on top  e.g. ChildClass  --|> ParentClass
 ' <|-- Inheritance, parent on top e.g. ParentClass --|> ChildClass
+' --   Association, need to communicate, no strong relationship
+' -->  Directed Association, classA knows of classB, but not vice versa
 ' *--  Composition
 ' o--  Aggregation
-' --   Association
-' -->  Directed Association
 ' ..>  Dependency
 ' <|.. Realization
 '_______________________________________________________________________
@@ -39,9 +39,9 @@ class MomentarySwitch
 
 QnxDriver     *-down- UserCtrl
 QnxDriver     *-down- TimeCtrl
-QnxDriver     *-down- AlphaDisplay
-TimeCtrl      *-up-   AlphaDisplay
-UserCtrl      *-up-   AlphaDisplay
+QnxDriver     o-down- AlphaDisplay
+TimeCtrl      o-up-   AlphaDisplay
+UserCtrl      o-up-   AlphaDisplay
 TimeCtrl      *-      ClockWrapper
 TimeCtrl      *-down- FluxAlarm
 
@@ -50,6 +50,8 @@ FluxAlarm     -      AudioCtrl
 
 AlphaDisplay   *- Adafruit_AlphaNum4
 
+'_______________________________________________________________________
+' Class descriptions
 json "Class Description" as class_desc {
   "TopLevel           " : "Top level functionality."
 , "TimeCalcs          " : "Static time constants and calculations."

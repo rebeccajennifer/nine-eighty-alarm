@@ -19,8 +19,8 @@ skinparam NoteBackgroundColor   $def_bg_
 skinparam NoteBorderColor       $color_1
 skinparam ArrowThickness        2
 skinparam ClassBorderThickness  2
-skinparam Linetype              ortho
 
-!include ./nine-eighty.puml
+' Ortho spec breaks the smaller files
+'skinparam Linetype              ortho
 
 @enduml

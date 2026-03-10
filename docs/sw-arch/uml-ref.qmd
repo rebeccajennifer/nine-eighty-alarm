@@ -54,9 +54,28 @@ class DebugClass
 ClassA <-- DebugClass
 @enduml
 
+#### Composition
+
+Composition is a subset of association and refers to a relationship between instances of classes. A composition relationship implies that the child cannot meaningfully exist without the parent. The parent exists at the composite end and it is responsible for the life cycle of the child.
+
+__Arrowhead Representation__
+
+Solid diamond shape on the side of the parent.
+
+__Example__
+
+In this example, `Rabbit` is at the composite end of the relationship with `Ear` and `Tail`.
+
+@startuml
+hide circle
+hide members
+Rabbit *-- Ear
+Rabbit *-- Tail
+@enduml
+
 #### Aggregation
 
-Aggregation is a subset of association. Implies that the child can exist independently of the parent. This relationship does not indicated that there is ownership between classes.
+Aggregation is a subset of association and refers to a relationship between instances of classes. Implies that each class can exist independently. The "child" might belong to more than one parent.
 
 __Arrowhead Representation__
 
@@ -67,24 +86,9 @@ __Example__
 @startuml
 hide circle
 hide members
-Human o-- Rabbit
+Jack o-- Rabbit
+Jill o-- Rabbit
 @enduml
 
 The rabbit will still exist if the human is deleted.
 
-#### Composition
-
-Composition is a subset of association. Implies that the child cannot exist without the parent.
-
-__Arrowhead Representation__
-
-Solid diamond shape on the side of the parent.
-
-__Example__
-
-@startuml
-hide circle
-hide members
-Rabbit *-- Ear
-Rabbit *-- Tail
-@enduml

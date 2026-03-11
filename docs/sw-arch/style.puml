@@ -1,4 +1,5 @@
 @startuml style-nine-eighty
+
 '_______________________________________________________________________
 ' Colors
 '_______________________________________________________________________
@@ -13,12 +14,18 @@
 
 !$def_bg_= "#ffffff"
 
+' Hides the 'c' that appears next to classes
+hide circle
+
 skinparam ClassBackgroundColor  $def_bg_
 skinparam ClassBorderColor      $color_0
 skinparam NoteBackgroundColor   $def_bg_
 skinparam NoteBorderColor       $color_1
 skinparam ArrowThickness        2
 skinparam ClassBorderThickness  2
+skinparam DefaultFontName       "Monospaced"
+skinparam DefaultFontSize       "10"
+skinparam MinClassWidth         140
 
 ' Ortho spec breaks the smaller files
 'skinparam Linetype              ortho

@@ -2,12 +2,7 @@
 
 ''
 
-' Hides the 'c' that appears next to classes
-hide circle
 
-skinparam DefaultFontName "Monospaced"
-skinparam DefaultFontSize "10"
-skinparam MinClassWidth 140
 
 '_______________________________________________________________________
 ' Global params

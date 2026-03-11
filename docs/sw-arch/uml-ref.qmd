@@ -40,23 +40,13 @@ Derived from Behavior Diagram
 
 ### Association
 
-Association is when two classes know about each other and need to communicate, but there is no strong relationship.
+There are several types of Associations: the general Directed Association, and its specialized forms, Aggregation and Composition. An association exists when one class has a relationship with an _instance_ of another. These different types describe the lifecycle and ownership rules between those instances at runtime.
 
 __Example__
 
-`ClassA` uses functions from `DebugClass`. `ClassA` knows about debug class, but not vice versa.
-
-@startuml
-hide circle
-hide members
-class ClassA
-class DebugClass
-ClassA <-- DebugClass
-@enduml
-
 #### Composition
 
-Composition is a subset of association and refers to a relationship between instances of classes. A composition relationship implies that the child cannot meaningfully exist without the parent. The parent exists at the composite end and it is responsible for the life cycle of the child.
+Composition is a subset of association and refers to a relationship between _instances_ of classes. A composition relationship implies that the child cannot meaningfully exist without the parent. The parent exists at the composite end and it is responsible for the life cycle of the child.
 
 __Arrowhead Representation__
 
@@ -67,7 +57,7 @@ __Example__
 In this example, `Rabbit` is at the composite end of the relationship with `Ear` and `Tail`.
 
 @startuml
-hide circle
+!include style.puml
 hide members
 Rabbit *-- Ear
 Rabbit *-- Tail
@@ -75,7 +65,7 @@ Rabbit *-- Tail
 
 #### Aggregation
 
-Aggregation is a subset of association and refers to a relationship between instances of classes. Implies that each class can exist independently. The "child" might belong to more than one parent.
+Aggregation is a subset of association and refers to a relationship between _instances_ of classes. An aggregation relationship implies that each class can exist independently. The "child" might belong to more than one parent.
 
 __Arrowhead Representation__
 
@@ -84,11 +74,49 @@ Unfilled diamond on the side of the parent.
 __Example__
 
 @startuml
-hide circle
+!include style.puml
 hide members
 Jack o-- Rabbit
 Jill o-- Rabbit
 @enduml
 
 The rabbit will still exist if the human is deleted.
+
+#### Directed Association
+
+A directed association describes a relationship where one instance knows about another, but they are peers rather than a 'whole' and a 'part'. This is ideal for objects at the same architectural level or when a class interacts with a global instance.
+
+__Example__
+
+There exists a global object of type `PushButton` that is referenced in another object of type `UserInterface`. `UserInterface` does not own the `PushButton` object but interacts with it.
+
+@startuml
+!include style.puml
+hide members
+class UserInterface
+UserInterface --> PushButton
+@enduml
+
+### Dependency
+
+__Example__
+
+`DebugClass` is a class with all static methods. `ClassA` calls functions from `DebugClass` but there is no  `DebugClass` object.
+
+@startuml
+!include style.puml
+skinparam MinClassWidth 180
+
+hide circle
+hide fields
+
+class ClassA
+hide ClassA members
+
+class DebugClass{
+  +static void print_memory()
+}
+
+ClassA --> DebugClass
+@enduml
 

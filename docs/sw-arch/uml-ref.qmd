@@ -38,6 +38,15 @@ Derived from Behavior Diagram
 
 ## Class Diagram Terminology
 
+### Summary
+
+Relationship    |  Line Style | Arrowhead       | Lifecycle Logic
+-|-|-|-|-|
+**Composition** | Solid       | Filled diamond  | __Strong Ownership:__ I own you and you die with me.
+**Aggregation** | Solid       | Hollow diamond  | __Shared Ownership__  I have you but you can leave.
+**Association** | Solid       | Vee             | __Peer/Global:__      I talk to you as a peer / global.
+**Dependency**  | Dashed      | Vee             | __Transient:__        I use your static logic.
+
 ### Association
 
 There are several types of Associations: the general Directed Association, and its specialized forms, Aggregation and Composition. An association exists when one class has a relationship with an _instance_ of another. These different types describe the lifecycle and ownership rules between those instances at runtime.
@@ -46,7 +55,7 @@ __Example__
 
 #### Composition
 
-Composition is a subset of association and refers to a relationship between _instances_ of classes. A composition relationship implies that the child cannot meaningfully exist without the parent. The parent exists at the composite end and it is responsible for the life cycle of the child.
+Composition is a subset of association and refers to a relationship between _instances_ of classes. A composition relationship implies that the child cannot meaningfully exist without the parent. The parent is the Composite (the whole), and the child is the Component (the part). Composition implies exclusive ownership; the component cannot be shared with other composites..
 
 __Arrowhead Representation__
 
@@ -65,7 +74,7 @@ Rabbit *-- Tail
 
 #### Aggregation
 
-Aggregation is a subset of association and refers to a relationship between _instances_ of classes. An aggregation relationship implies that each class can exist independently. The "child" might belong to more than one parent.
+Aggregation is a subset of association and refers to a relationship between _instances_ of classes. An aggregation relationship implies that each class can exist independently. The 'part' is shared and is often called Shared Aggregation. It signifies a collection where the parts have a lifecycle independent of the container.
 
 __Arrowhead Representation__
 
@@ -117,6 +126,6 @@ class DebugClass{
   +static void print_memory()
 }
 
-ClassA --> DebugClass
+ClassA ..> DebugClass
 @enduml
 

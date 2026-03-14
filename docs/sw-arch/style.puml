@@ -13,19 +13,26 @@
 !$color_2= "#000000"
 
 !$def_bg_= "#ffffff"
+!$font_size_norm = "10"
 
 ' Hides the 'c' that appears next to classes
 hide circle
 
 skinparam ClassBackgroundColor  $def_bg_
 skinparam ClassBorderColor      $color_0
-skinparam NoteBackgroundColor   $def_bg_
-skinparam NoteBorderColor       $color_1
 skinparam ArrowThickness        2
 skinparam ClassBorderThickness  2
 skinparam DefaultFontName       "Monospaced"
-skinparam DefaultFontSize       "10"
+skinparam DefaultFontSize       $font_size_norm
 skinparam MinClassWidth         140
+
+<style>
+note {
+  BackgroundColor $def_bg_
+  LineColor       $color_1
+  FontSize        $font_size_norm
+}
+</style>
 
 ' Ortho spec breaks the smaller files
 'skinparam Linetype              ortho

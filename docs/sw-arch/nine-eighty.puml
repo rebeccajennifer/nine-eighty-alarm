@@ -34,14 +34,18 @@ class MomentarySwitch
 
 QnxDriver     *-down- UserCtrl
 QnxDriver     *-down- TimeCtrl
-QnxDriver     o-down- AlphaDisplay
+QnxDriver     *-down- AlphaDisplay
 TimeCtrl      o-up-   AlphaDisplay
 UserCtrl      o-up-   AlphaDisplay
-TimeCtrl      *-      ClockWrapper
+TimeCtrl      *-down- ClockWrapper
 TimeCtrl      *-down- FluxAlarm
+ClockWrapper  *-      DS3231
+note "QnxDriver mediates data flow \nfrom UserCtrl to TimeCtrl" as Note0
+UserCtrl      ..      Note0
+TimeCtrl      ..      Note0
 
 UserCtrl      *-down- MomentarySwitch
-FluxAlarm     -      AudioCtrl
+FluxAlarm     -       AudioCtrl
 
 AlphaDisplay   *- Adafruit_AlphaNum4
 

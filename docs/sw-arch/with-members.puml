@@ -3,11 +3,32 @@
 !include ./nine-eighty.puml
 !include ./style.puml
 
+hide Adafruit_AlphaNum4 members
+hide DS3231 members
+
+class ClockWrapper
+{
+  +DS3231 rtc_
+  +get_month()
+  +get_day()
+  +get_hr()
+  +get_min()
+  +get_sec()
+
+  +set_year (short)
+  +set_month(uint8_t)
+  +set_day  (uint8_t)
+  +set_hr   (uint8_t)
+  +set_min  (uint8_t)
+  +set_sec  (uint8_t)
+
+}
+
 class TimeCtrl
 {
-  -ClockWrapper clock_
-  -AlphaDisplay  *display_
-  +bool         is_on_fri()
+  -ClockWrapper  clock_
+  -AlphaDisplay* display_
+  +bool          is_on_fri()
 }
 
 class AlphaDisplay
@@ -21,7 +42,11 @@ class AlphaDisplay
 
 class UserCtrl
 {
-  -AlphaDisplay* display_
+  -AlphaDisplay*   display_
+  -MomentarySwitch inc_btn_
+  -MomentarySwitch dec_btn_
+  -MomentarySwitch snooze_btn_
+  -LatchingSwitch  alarm_toggle_
 }
 
 class FluxAlarm

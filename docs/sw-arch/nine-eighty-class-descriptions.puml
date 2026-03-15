@@ -1,0 +1,17 @@
+@startuml
+'_______________________________________________________________________
+' Class descriptions
+json "Class Description" as class_desc {
+  "QNXDriver          " : "Main driver for entire project. Manages data flow between user inputs, time calculations, and display output."
+, "TimeCalcs          " : "Static time constants and calculations."
+, "ClockWrapper       " : "Clock object and time setter functions based on hardware implementation. Tracks off Friday week."
+, "MomentarySwitch    " : "State logic for buttons."
+, "LatchingSwitch     " : "State logic for toggle switch."
+, "Alarm          " : "Alarm information."
+, "Adafruit_AlphaNum4 " : "Third party class to control LED display."
+, "UserCtrl           " : "Interaction between user inputs and time set."
+, "AlphaDisplay       " : "Alphanumeric display control and formatting."
+, "Adafruit_AlphaNum4 " : "Third party class to control LED display."
+, "DS3231             " : "Third party class to control RTC."
+}
+@enduml

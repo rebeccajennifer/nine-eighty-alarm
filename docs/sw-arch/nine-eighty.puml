@@ -1,9 +1,5 @@
 @startuml
 
-''
-
-
-
 '_______________________________________________________________________
 ' Global params
 '_______________________________________________________________________
@@ -27,7 +23,7 @@ class ClockWrapper
 class Adafruit_AlphaNum4
 class TimeCtrl
 class UserCtrl
-class FluxAlarm
+class Alarm
 class AlphaDisplay
 class AudioCtrl
 class MomentarySwitch
@@ -38,28 +34,17 @@ QnxDriver     *-down- AlphaDisplay
 TimeCtrl      o-up-   AlphaDisplay
 UserCtrl      o-up-   AlphaDisplay
 TimeCtrl      *-down- ClockWrapper
-TimeCtrl      *-down- FluxAlarm
-ClockWrapper  *-      DS3231
+TimeCtrl      *-down- "1..*" Alarm
+ClockWrapper  *-down- DS3231
+Alarm         *-down- AudioCtrl
+
 note "QnxDriver mediates data flow \nfrom UserCtrl to TimeCtrl" as Note0
 UserCtrl      ..      Note0
 TimeCtrl      ..      Note0
 
-UserCtrl      *-down- MomentarySwitch
-FluxAlarm     -       AudioCtrl
+UserCtrl      *-down- "1..*" MomentarySwitch
+UserCtrl      *-down- "1..*" LatchingSwitch
 
 AlphaDisplay   *- Adafruit_AlphaNum4
 
-'_______________________________________________________________________
-' Class descriptions
-json "Class Description" as class_desc {
-  "TopLevel           " : "Top level functionality."
-, "TimeCalcs          " : "Static time constants and calculations."
-, "ClockWrapper       " : "Clock object and time setter functions based on hardware implementation. Tracks off Friday week."
-, "MomentarySwitch    " : "State logic for buttons."
-, "FluxAlarm          " : "Alarm information."
-, "Adafruit_AlphaNum4 " : "Third party class to control LED display."
-, "UserCtrl           " : "Interaction between user inputs and time set."
-, "AlphaDisplay       " : "Alphanumeric display control and formatting."
-, "QNXDriver          " : "QNX driver class."
-}
 @enduml

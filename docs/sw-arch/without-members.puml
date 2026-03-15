@@ -1,8 +1,0 @@
-@startuml without-members
-
-!include nine-eighty.puml
-!include style.puml
-
-hide members
-
-@enduml

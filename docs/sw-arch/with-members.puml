@@ -4,16 +4,28 @@
 !include ./style.puml
 
 hide Adafruit_AlphaNum4 members
-hide DS3231 members
+hide DS3231             members
+hide LatchingSwitch     members
+
+class QnxDriver
+{
+  +TimeCtrl time_ctrl_
+  +UserCtrl user_ctrl_
+  +AlphaDisplay alpha_disp_
+}
 
 class ClockWrapper
 {
   +DS3231 rtc_
-  +get_month()
-  +get_day()
-  +get_hr()
-  +get_min()
-  +get_sec()
+  +uint8_t get_weekday_mask()
+
+  +uint8_t get_yr()
+  +uint8_t get_month()
+  +uint8_t get_date()
+  +uint8_t get_weekday()
+  +uint8_t get_hr()
+  +uint8_t get_min()
+  +uint8_t get_sec()
 
   +set_year (short)
   +set_month(uint8_t)
@@ -49,12 +61,43 @@ class UserCtrl
   -LatchingSwitch  alarm_toggle_
 }
 
-class FluxAlarm
+class Alarm
 {
-  -uint8_t day
-  -uint8_t hr
-  -uint8_t min
+  -uint8_t alarm_days_ // 8-bit mask
+  -uint8_t hr_
+  -uint8_t min_
+  -bool triggered_
+  +bool is_alarm_time(uint8_t crnt_day, uint8_t hr, uint8_t min)
 }
+
+class AudioCtrl
+{
+  -SpeakerWrapper speaker_
+  -AlarmSound selected_alarm_sound_
+  +void play_alarm_sound()
+}
+
+enum InputType <<enumeration>> {
+NONE
+LONG
+SHORT
+DOUBLE
+TRIPLE
+}
+
+hide InputType   methods
+hide SwitchState methods
+
+enum SwitchState <<enumeration>> {
+IDLE
+PRESS
+HOLD
+RELEASE
+WAIT
+}
+
+MomentarySwitch +-- InputType
+MomentarySwitch +-- SwitchState
 
 class MomentarySwitch
 {

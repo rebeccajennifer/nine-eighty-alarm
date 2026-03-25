@@ -9,7 +9,7 @@
 ' e.g. class ClassName #$outline_color $bg_color
 '_______________________________________________________________________
 
-!$font_size_norm = "10"
+!$font_size_norm = "14"
 
 ' Hides the 'c' that appears next to classes
 hide circle
@@ -19,7 +19,7 @@ skinparam ClassBorderThickness  2
 skinparam ClassBorderColor      $color_0
 
 skinparam Class {
-  ArrowColor $fg_mute
+  ArrowColor      $fg_mute
 }
 
 skinparam ArrowThickness        1
@@ -29,7 +29,7 @@ skinparam DefaultFontName       "Monospaced"
 skinparam DefaultFontSize       $font_size_norm
 
 skinparam MinClassWidth         200
-skinparam backgroundcolor       transparent
+'skinparam backgroundcolor       transparent
 
 <style>
 note {

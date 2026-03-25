@@ -1,12 +1,10 @@
-@startuml nine-eighty-class-diagram-without-members-dark
+@startuml nine-eighty-alarm-class-diagram-without-members-dark
 
 !include style-dark-colors.puml
 !include style.puml
 !include nine-eighty.puml
 
 skinparam MinClassWidth         120
-
 hide members
-
 
 @enduml

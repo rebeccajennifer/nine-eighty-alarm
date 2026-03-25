@@ -1,4 +1,4 @@
-@startuml
+@startuml nine-eighty-alarm-base-uml
 
 '_______________________________________________________________________
 ' Global params
@@ -31,7 +31,6 @@ class MomentarySwitch
 QnxDriver     *-down- UserCtrl
 QnxDriver     *-down- TimeCtrl
 QnxDriver     *-down- AlphaDisplay
-TimeCtrl      o-up-   AlphaDisplay
 UserCtrl      o-up-   AlphaDisplay
 TimeCtrl      *-down- ClockWrapper
 TimeCtrl      *-down- "1..*" Alarm
@@ -39,8 +38,8 @@ ClockWrapper  *-down- DS3231
 Alarm         *-down- AudioCtrl
 
 note "QnxDriver mediates data flow \nfrom UserCtrl to TimeCtrl" as Note0
-UserCtrl      ..      Note0
-TimeCtrl      ..      Note0
+UserCtrl      ..     Note0
+TimeCtrl      ..     Note0
 
 UserCtrl      *-down- "1..*" MomentarySwitch
 UserCtrl      *-down- "1..*" LatchingSwitch

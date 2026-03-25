@@ -1,4 +1,4 @@
-@startuml nine-eighty-class-diagram-without-members-lite
+@startuml nine-eighty-alarm-class-diagram-without-members-lite
 
 !include style-lite-colors.puml
 !include style.puml

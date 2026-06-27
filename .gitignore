@@ -5,6 +5,7 @@ uml-ref_files/
 # AutoCAD
 *.dwl
 *.dwl2
+*.bak
 
 # Prerequisites
 *.d
